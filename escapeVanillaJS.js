@@ -21,29 +21,29 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
 
-
-    // 🪲 Bug: Asynchronous function ?
+    // Room 3: The Asunchronous Labyrinth
+    // 🪲 Bug: Asynchronous function ? // Corrected
     document.getElementById("solveRoom3").addEventListener("click", () => {
         fetch('directions.json') 
             .then(response => response.json())
             .then(directions => {
                 navigateLabyrinth(directions)
                     .then(message => {
-                        // 🪲 Bug: Incorrect method
-                        document.getElementById("room3Result").innerHTML = message;
+                        // 🪲 Bug: Incorrect method // Corrected
+                        document.getElementById("room3Result").textContent = message;
                     });
             });
     });
 });
 
 function findMostRecentBook(books) {
-    // 🪲 Bug: Logic error
-    return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
+    // 🪲 Bug: Logic error // Corrected
+    return books.reduce((mostRecent, book) => new Date(book.published) > new Date(mostRecent.published) ? book : mostRecent, books[0]);
 }
 
 function findIntersection(setA, setB) {
-    // 🪲 Bug: Incorrect logic
-    const intersection = new Set([...setA]);
+    // 🪲 Bug: Incorrect logic // Corrected
+    const intersection = new Set([...setA].filter(x => setB.has(x)));
     return intersection;
 }
 

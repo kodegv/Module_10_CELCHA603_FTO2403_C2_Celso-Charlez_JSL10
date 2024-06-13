@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Room 1: The JSON Library
     // 🪲 Bug: Incorrect ID used for attaching the event listener // Corrected
     document.getElementById("solveRoom1").addEventListener("click", () => {
         fetch('books.json') 
@@ -10,18 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     });
 
+    // Room 2: The Set Chamber
     document.getElementById("solveRoom2").addEventListener("click", () => {
         const jsConcepts = new Set(['closure', 'scope', 'hoisting', 'async']);
         // 🪲 Bug: What's mssing from JS concepts? // Corrected
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call // Corrected
+        const commonConcepts = findIntersection(jsConcepts, reactConcepts);
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
 
-    function findIntersection(setA, setB) {
-        const intersection = new Set([...setA].filter(x => setB.has(x)));
-        return intersection;
-    }
 
     // 🪲 Bug: Asynchronous function ?
     document.getElementById("solveRoom3").addEventListener("click", () => {
